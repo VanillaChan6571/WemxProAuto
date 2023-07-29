@@ -29,9 +29,9 @@
 *   [Download History Updater](#Update-History)
 
 ## Introduction
-This github uses https://wemx.pro documentation on installing/updating.
-If you wish to see the full documentaion for WEMX, Web: https://docs.wemx.net/en/home
-If you need any support for WEMX Related issues, discord server: https://discord.gg/vertisan
+<p>This github uses https://wemx.pro documentation on installing/updating.</p>
+<p>If you wish to see the full documentaion for WEMX, Web: https://docs.wemx.net/en/home</p>
+<p>If you need any support for WEMX Related issues, discord server: https://discord.gg/vertisan</p>
 
 ## Auto Installation
 

@@ -51,4 +51,4 @@ All Download Verions for Installer
 All Download Verions for Updater
 | Wemx Version | Script Version | Download | Unix Bash Code |
 | --- | --- | -------------------- | -------------------- |
-| 1.3.0 | 1.0.0 | **[Current Version - 1.0.0](N/A)** | bash <(curl -s N/A) |
+| 1.3.0 | 1.0 | **[Current Version - 1.0](https://github.com/VanillaChan6571/WemxProAuto/blob/main/WemxPRO-Updater-1.0.sh)** | bash <(curl -s https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/WemxPRO-Updater-1.0.sh)https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/WemxPRO-Updater-1.0.sh) |

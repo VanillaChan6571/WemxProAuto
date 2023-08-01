@@ -11,7 +11,7 @@
     </b>
     <b>
       | Script was made by yours truely!
-    <p align="center"><h2> Please Note This is a THIRD PARTY SCRIPT(s)! This not any related of Wemx or Wemx Devs. </h2></p>
+    <p align="center"><h2> Please Note This is a THIRD PARTY SCRIPT(s)! Wemx or Wemx Devs did not make these scripts!. </h2></p>
   </b>
 </p>
 

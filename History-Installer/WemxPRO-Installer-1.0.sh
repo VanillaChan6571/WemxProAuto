@@ -33,7 +33,7 @@ echo "==========================================================================
 echo "WemxPRO | Wemx Pro INSTALLER Script 1.0.0"
 echo
 echo "Copyright (C) 2021 - $(date +%Y), NekoHosting"
-echo "TBA"
+echo "https://github.com/VanillaChan6571/WemxProAuto"
 echo
 warning "DO NOT RUN THIS IF YOU ALREADY HAVE A WEMX INSTALLED!"
 echo "YOU SHOULD ONLY RUN THIS IF YOU WISH TO DO A NEW INSTALL!"
@@ -168,7 +168,7 @@ read -sp "Enter the MySQL root password: " ROOT_PASSWORD
 echo " "
 read -sp "Enter the new password for wemx: " NEW_PASSWORD
 echo " "
-read -p "Enter the host for the new user (127.0.0.1 for local only connections, % for any host): " HOST\
+read -p "Enter the host for the new user (127.0.0.1 for local only connections, % for any host): " HOST
 warning "If Root's Password is BLANK then it will ask for a password, just hit enter if blank."
 sleep 3s
 

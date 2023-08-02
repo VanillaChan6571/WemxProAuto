@@ -30,12 +30,18 @@ notice() {
 }
 
 echo "============================================================================"
-echo "WemxPRO | Wemx Pro Update Script 1.0.0"
+echo "WemxPRO | Wemx Pro Update Script 1.0.1"
 echo
 echo "Copyright (C) 2021 - $(date +%Y), NekoHosting"
-echo "TBA"
+echo "https://github.com/VanillaChan6571/WemxProAuto"
 echo
 echo "This install script will replace any files it needs to."
+echo "============================================================================"
+echo "Patch Notes for 1.0.1"
+echo "+ Added better way for WEMX Key to be used."
+echo "+ Forked the ending script from installer to updater."
+echo " "
+echo "If you wish to download the older versions, you can on the github"
 echo "============================================================================"
 
 #Checks to continue#
@@ -56,15 +62,19 @@ done
 
 cd /var/www/wemx
 
+notice "Wemx Installer will be ran in this setup... We will need the key for it to work."
+
+read -p "Enter the License Key for WEMX: " WEMX_KEY
+
+notice "if you wish to not always enter your license key, edit this script to find out more!"
+
 COMPOSER_ALLOW_SUPERUSER=1 composer require wemx/installer dev-wemxpro
 
-php artisan wemx:install --eula=yes
+php artisan wemx:install $WEMX_KEY --eula=yes
 
 #Hello! If you are reading this, you can technically use the following:
 #php artisan wemx:install license-key-here --eula=yes
 #This will make it more automated and really let it do everything.
-
-notice "if you wish to not always enter your license key, edit this script to find out more!"
 
 chmod -R 755 storage/* bootstrap/cache
 
@@ -79,9 +89,16 @@ php artisan migrate --seed --force
 
 chown -R www-data:www-data /var/www/wemx/*
 
+notice "Clearing the WEMX KEY variable from memory..."
+unset WEMX_KEY
+success "Unsetting for security reasons.."
+success "Done & Cleared!"
+
 success "Script Complete"
 echo "============================================================================"
-echo "This was the entire Auto Updater!"
-echo "Now Exiting..."
+echo "This was the entire updater!"
+echo "Thank You for using the WemxPROAuto Updater!"
+echo "Made by nwya#0 or VanillaChan#6571"
 echo "============================================================================"
+success "Exited WemxPRO-Updater-1.0.1"
 # This update was simple, but sometimes the docs do get updated, So this must be updated if the doc adds or removes stuff.

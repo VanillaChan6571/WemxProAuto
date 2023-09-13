@@ -97,7 +97,7 @@ do
     esac
 done
 
-sudo php artisan cache:clear && php artisan config:clear
+sudo php artisan cache:clear && sudo php artisan route:clear && sudo php artisan view:clear && sudo php artisan config:clear
 
 sudo chmod -R 755 storage/* bootstrap/cache/
 

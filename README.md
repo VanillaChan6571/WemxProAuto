@@ -26,8 +26,9 @@
 *   [Introduction](#introduction)
 *   [Auto Installation Script](#Auto-Installation)
 *   [Auto Update Script](#Auto-Uodater])
-*   [Download History Installer](#Download-History)
-*   [Download History Updater](#Update-History)
+*   [Download History of the Installer](#First-Time-Installer-History)
+*   [Download History of the Updater](#Updater-History)
+*   [Third Party + Extra's Installers]()
 
 ## Introduction
 <p>This github uses https://wemx.pro documentation on installing/updating.</p>
@@ -63,16 +64,22 @@ Auto Update will update the following:
  - chown -R www-data:www-data /var/www/wemx/*
  - More Info on https://docs.wemx.net/en/updating
 
-## Download History
+## First Time Installer History
 All Download Verions for Installer
 | Wemx Version | Script Version | Download | Unix Bash Code |
 | --- | --- | -------------------- | -------------------- |
 | 1.4.0-1.5.0 | 1.0.1 | **[Live Version - 1.0.1](https://github.com/VanillaChan6571/WemxProAuto/blob/main/WemxPRO-Installer-live.sh)** | bash <(curl -s https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/WemxPRO-Installer-live.sh) |
 | 1.4.0 | 1.0 | **[1.0.0](https://github.com/VanillaChan6571/WemxProAuto/blob/main/History-Installer/WemxPRO-Installer-1.0.sh)** | bash <(curl -s https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/History-Installer/WemxPRO-Installer-1.0.sh) |
 
-## Update History
+## Updater History
 All Download Verions for Updater
 | Wemx Version | Script Version | Download | Unix Bash Code |
 | --- | --- | -------------------- | -------------------- |
 | 1.4.0-1.5.0 | 1.0.1 | **[Live Version - 1.0.1](https://github.com/VanillaChan6571/WemxProAuto/blob/main/WemxPRO-Updater-live.sh)** | bash <(curl -s https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/WemxPRO-Updater-live.sh) |
 | 1.4.0 | 1.0 | **[1.0](https://github.com/VanillaChan6571/WemxProAuto/blob/main/History-Updater/WemxPRO-Updater-1.0.sh)** | bash <(curl -s https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/History-Updater/WemxPRO-Updater-1.0.sh) |
+
+## Extra
+Thirdparties / Extra Installers.
+| Wemx Version | Script Version | Download | Unix Bash Code |
+| --- | --- | -------------------- | -------------------- |
+| 1.0.x-1.5.x | 1.0.0 | **[Live Version - 1.0.1](https://github.com/VanillaChan6571/WemxProAuto/blob/main/WemxPRO-Updater-live.sh)** | bash <(curl -s https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/WemxPRO-Updater-live.sh) |

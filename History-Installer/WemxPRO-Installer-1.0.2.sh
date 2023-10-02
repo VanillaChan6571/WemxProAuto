@@ -138,7 +138,7 @@ COMPOSER_ALLOW_SUPERUSER=1 composer require wemx/installer dev-wemxpro
 
 warning "You automatically agree to WEMX's EULA."
 
-php artisan wemx:install $WEMX_KEY --eula=yes
+php artisan wemx:install $WEMX_KEY
 
 cp .env.example .env
 

@@ -30,7 +30,7 @@ notice() {
 }
 
 echo "============================================================================"
-echo "WemxPRO | Wemx Pro INSTALLER Script 1.0.1"
+echo "WemxPRO | Wemx Pro INSTALLER Script 1.0.2"
 echo
 echo "Copyright (C) 2021 - $(date +%Y), NekoHosting"
 echo "https://github.com/VanillaChan6571/WemxProAuto"
@@ -43,6 +43,9 @@ echo "- Removed Python3 Nginx. (Seems to not work and caused issues)"
 echo "- Removed NGINX Challenge, DNS and HTTP still works."
 echo "+ Fixed some typo's and uppercasing."
 echo "+ Fixed WEMX Key shouldn't be invisible when typing or pasting."
+echo "============================================================================"
+echo "Patch Notes for 1.0.2"
+echo "- Removed eula=yes. (Removed in 1.7.0 since you automatically agree when you purchase Wemx.)"
 echo " "
 echo "If you wish to download the older versions, you can on the github"
 echo "============================================================================"
@@ -50,7 +53,7 @@ echo "==========================================================================
 
 while true; do
 
-read -p "ARE YOU SURE YOU WISH TO FRESH INSTALL? [Script: WemxPRO-INSTALLER-1.0.1] (y/N) " yn
+read -p "ARE YOU SURE YOU WISH TO FRESH INSTALL? [Script: WemxPRO-INSTALLER-1.0.2] (y/N) " yn
 
 case $yn in
 	[yY] ) echo Continuing with the NEW INSTALL of WEMX;
@@ -407,4 +410,4 @@ echo "This was the entire installer!"
 echo "Thank You for using the WemxPROAuto Installer!"
 echo "Made by nwya#0 or VanillaChan#6571"
 echo "============================================================================"
-success "Exited WemxPRO-Installer-1.0.1"
+success "Exited WemxPRO-Installer-1.0.2"

@@ -16,7 +16,7 @@
 </p>
 
 <p align="center">
-    <a href="https://discord.gg/vertisan">
+    <a href="https://discord.gg/vertisan-760945720470667294">
         <img alt="Discord" src="https://img.shields.io/discord/760945720470667294?color=7289DA&label=Discord&logo=discord&logoColor=7289DA">
     </a>
 </p>

@@ -1,5 +1,5 @@
 <p align="center">
-<img alt="MultiEgg Plugin + Addon Reinstaller"
+<img alt="Wemx"
     src="https://cdn.discordapp.com/icons/760945720470667294/1f6cf16d3e468242cacc1b539e6b4561.webp?size=256">
 </p>
 
@@ -31,9 +31,9 @@
 *   [Third Party + Extra's Installers]()
 
 ## Introduction
-<p>This github uses https://wemx.pro documentation on installing/updating.</p>
+<p>This github uses https://wemx.net documentation on installing/updating.</p>
 <p>If you wish to see the full documentaion for WEMX, Web: https://docs.wemx.net/en/home</p>
-<p>If you need any support for WEMX Related issues, discord server: https://discord.gg/vertisan</p>
+<p>If you need any support for WEMX Related issues, discord server: [https://discord.gg/vertisan](https://discord.com/invite/vertisan-760945720470667294)</p>
 <p>NOTICE: This Script Supports Ubuntu 22.04.x ONLY</p>
 
 ## Auto Installation

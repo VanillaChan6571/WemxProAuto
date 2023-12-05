@@ -30,28 +30,28 @@ notice() {
 }
 
 echo "============================================================================"
-echo "WemxPRO | Wemx Pro Update Script 1.0.2"
+echo "WemxPRO | Wemx Pro Update Script 1.0.3"
 echo
 echo "Copyright (C) 2021 - $(date +%Y), NekoHosting"
 echo "https://github.com/VanillaChan6571/WemxProAuto"
 echo
 echo "This install script will replace any files it needs to."
 echo "============================================================================"
-echo "Patch Notes for 1.0.1"
-echo "+ Added better way for WEMX Key to be used."
-echo "+ Forked the ending script from installer to updater."
-echo " "
 echo "Patch Notes for 1.0.2"
 echo "- Removed eula=yes. (Removed in 1.7.0 since you automatically agree when you purchase Wemx.)"
 echo " "
 echo "If you wish to download the older versions, you can on the github"
+echo " "
+echo "Patch Notes for 1.0.3"
+echo "+ Replaced the composer require due to new changes for 1.9.x"
+echo " "
 echo "============================================================================"
 
 #Checks to continue#
 
 while true; do
 
-read -p "Do you want to proceed with the script? [Script: WemxPRO-Updater-1.0.2] (y/N) " yn
+read -p "Do you want to proceed with the script? [Script: WemxPRO-Updater-1.0.3] (y/N) " yn
 
 case $yn in
 	[yY] ) echo Continuing with the updater;
@@ -71,7 +71,7 @@ read -p "Enter the License Key for WEMX: " WEMX_KEY
 
 notice "if you wish to not always enter your license key, edit this script to find out more!"
 
-COMPOSER_ALLOW_SUPERUSER=1 composer require wemx/installer dev-wemxpro
+COMPOSER_ALLOW_SUPERUSER=1 composer require wemx/installer dev-web
 
 php artisan wemx:install $WEMX_KEY
 
@@ -103,5 +103,5 @@ echo "This was the entire updater!"
 echo "Thank You for using the WemxPROAuto Updater!"
 echo "Made by nwya#0 or VanillaChan#6571"
 echo "============================================================================"
-success "Exited WemxPRO-Updater-1.0.2"
+success "Exited WemxPRO-Updater-1.0.3"
 # This update was simple, but sometimes the docs do get updated, So this must be updated if the doc adds or removes stuff.

@@ -77,8 +77,9 @@ All Download Verions for Installer
 All Download Verions for Updater
 | Wemx Version | Script Version | Download | Unix Bash Code |
 | --- | --- | -------------------- | -------------------- |
-| 1.7.0 | 1.0.2 | **[Live Version - 1.0.2](https://github.com/VanillaChan6571/WemxProAuto/blob/main/WemxPRO-Updater-live.sh)** | bash <(curl -s https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/WemxPRO-Updater-live.sh) |
-| 1.7.0 | 1.0.2 | **[1.0.2](https://github.com/VanillaChan6571/WemxProAuto/blob/main/History-Updater/WemxPRO-Updater-1.0.2.sh)** | bash <(curl -s https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/History-Updater/WemxPRO-Updater-1.0.2.sh) |
+| 1.9.x | 1.0.3 | **[Live Version - 1.0.3](https://github.com/VanillaChan6571/WemxProAuto/blob/main/WemxPRO-Updater-live.sh)** | bash <(curl -s https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/WemxPRO-Updater-live.sh) |
+| 1.9.x | 1.0.3 | **[1.0.3](https://github.com/VanillaChan6571/WemxProAuto/blob/main/History-Updater/WemxPRO-Updater-1.0.3.sh)** | bash <(curl -s https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/History-Updater/WemxPRO-Updater-1.0.3.sh) |
+| 1.7.0-1.8.x | 1.0.2 | **[1.0.2](https://github.com/VanillaChan6571/WemxProAuto/blob/main/History-Updater/WemxPRO-Updater-1.0.2.sh)** | bash <(curl -s https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/History-Updater/WemxPRO-Updater-1.0.2.sh) |
 | 1.5.0-1.6.4 | 1.0.1 | **[1.0.1](https://github.com/VanillaChan6571/WemxProAuto/blob/main/History-Updater/WemxPRO-Updater-1.0.1.sh)** | bash <(curl -s https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/History-Updater/WemxPRO-Updater-1.0.1.sh) |
 | 1.4.0 | 1.0 | **[1.0](https://github.com/VanillaChan6571/WemxProAuto/blob/main/History-Updater/WemxPRO-Updater-1.0.sh)** | bash <(curl -s https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/History-Updater/WemxPRO-Updater-1.0.sh) |
 

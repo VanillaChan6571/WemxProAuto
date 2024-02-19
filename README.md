@@ -31,6 +31,8 @@
 *   [Third Party + Extra's Installers]()
 
 ## Introduction
+<p>2.0.0 INFO: https://github.com/VanillaChan6571/WemxProAuto/wiki/2.0.0-Update-Experimental</p>
+
 <p>This github uses https://wemx.net documentation on installing/updating.</p>
 <p>If you wish to see the full documentaion for WEMX, Web: https://docs.wemx.net/en/home</p>
 <p>If you need any support for WEMX Related issues, discord server: https://discord.com/invite/vertisan-760945720470667294</p>

@@ -521,18 +521,17 @@ notice "Making a Daemon Server File Directory..."
 #echo "5. Cancel Script and Exit."
 #echo "============================================================================"
 echo "Making a Daemon Server File Directory"
-warning "If you use OVH you should check your partition scheme. You may need to use /home/daemon-data to have enough space."
-select opt in "1. Default Location" "2. Custom Location" "3. Default Location (OVH)" "4. Custom Location (OVH)" "5. Cancel Script and Exit."
-do
+echo "If you use OVH you should check your partition scheme. You may need to use /home/daemon-data to have enough space."
+select opt in "Default Location" "Custom Location" "Default Location (OVH)" "Custom Location (OVH)" "Cancel Script and Exit."; do
     case $opt in
-        "1")
+        "Default Location")
 			cd /
             mkdir -p /var/lib/pterodactyl/volumes
 			notice "Configuration File you will need to add manually from panel itself." 
 			sleep 10
 			wings_finalize
             break;;
-        "2")
+        "Custom Location")
 			read -p "Enter Custom Directory Name: " DIR_CUSTOMKEY
             cd /
 			mkdir -p /$DIR_CUSTOMKEY/volumes
@@ -540,13 +539,14 @@ do
 			sleep 10
 			wings_finalize
             break;;
-        "3")
+        "Default Location (OVH)")
 			cd /
             mkdir -p /home/daemon-data/var/lib/pterodactyl/volumes
 			wings_finalize
 			notice "Configuration File you will need to add manually from panel itself." 
 			sleep 10
             break;;
+        "Custom Location (OVH)")
         "4")
 			read -p "Enter Custom Directory Name: " DIR_CUSTOMKEY
             cd /home/daemon-data
@@ -554,9 +554,10 @@ do
 			notice "Configuration File you will need to add manually from panel itself." 
 			sleep 10
 			wings_finalize
-            break;;		
-        "5")
-            exit;;
+            break;;	
+        "Cancel Script and Exit.")
+            echo "Exiting..."
+            exit 0;;
         *) echo "Invalid option $REPLY";;
     esac
 done

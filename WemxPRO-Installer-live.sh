@@ -547,7 +547,6 @@ select opt in "Default Location" "Custom Location" "Default Location (OVH)" "Cus
 			sleep 10
             break;;
         "Custom Location (OVH)")
-        "4")
 			read -p "Enter Custom Directory Name: " DIR_CUSTOMKEY
             cd /home/daemon-data
 			mkdir -p /home/daemon-data/$DIR_CUSTOMKEY/volumes

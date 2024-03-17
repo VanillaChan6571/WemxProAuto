@@ -25,9 +25,10 @@
 
 *   [Introduction](#introduction)
 *   [Auto Installation Script](#Auto-Installation)
-*   [Auto Update Script](#Auto-Uodater])
-*   [Download History of the Installer](#WPA-Toolbox)
+*   [Auto Update Script](#Auto-Updater])
+*   [WPA ToolBox Script](#WPA-Toolbox) {The One You will only need}
 *   [Third Party + Extra's Installers](#Extra)
+*   [Old Installers](#Old-Legacy-Installers)
 
 ## Introduction
 <p>2.0.0 INFO: https://github.com/VanillaChan6571/WemxProAuto/wiki/2.0.0-Update-Experimental</p>
@@ -72,6 +73,15 @@ This Toolbox does all First Time Installing and Wemx Updating + more at https://
 | 2.0.1 | 2.0.0 | **[Live Version - 2.0.0](https://github.com/VanillaChan6571/WemxProAuto/blob/main/WemxPRO-Installer-live.sh)** | bash <(curl -s https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/WemxPRO-Installer-live.sh) |
 | 2.0.1 | 2.0.0 | **[2.0.0](https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/History-Installer/WemxPRO-Installer-2.0.sh)** | bash <(curl -s https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/History-Installer/WemxPRO-Installer-2.0.sh) |
 
+## Extra
+Thirdparties / Extra Installers.
+| Wemx Version | Script Version | Download | Unix Bash Code |
+| --- | --- | -------------------- | -------------------- |
+| 1.0.x-1.5.x | 1.0.0 | **[Live Version - 1.0](https://github.com/VanillaChan6571/WemxProAuto/blob/main/WemxPRO-SSO-Installer-live.sh)** | bash <(curl -s https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/WemxPRO-SSO-Installer-live.sh) |
+| 1.0.x-1.5.x | 1.0 | **[1.0](https://github.com/VanillaChan6571/WemxProAuto/blob/main/History-3rdParties/WemxPRO-SSO-Installer-1.0.sh)** | bash <(curl -s https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/History-3rdParties/WemxPRO-SSO-Installer-1.0.sh) |
+
+
+## Old Legacy Installers
 Some Old First Time Installer History
 All Download Verions for Installer (Legacy)
 | Wemx Version | Script Version | Download | Unix Bash Code |
@@ -90,9 +100,3 @@ All Download Verions for Updater - Legacy
 | 1.5.0-1.6.4 | 1.0.1 | **[1.0.1](https://github.com/VanillaChan6571/WemxProAuto/blob/main/History-Updater/WemxPRO-Updater-1.0.1.sh)** | bash <(curl -s https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/History-Updater/WemxPRO-Updater-1.0.1.sh) |
 | 1.4.0 | 1.0 | **[1.0](https://github.com/VanillaChan6571/WemxProAuto/blob/main/History-Updater/WemxPRO-Updater-1.0.sh)** | bash <(curl -s https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/History-Updater/WemxPRO-Updater-1.0.sh) |
 
-## Extra
-Thirdparties / Extra Installers.
-| Wemx Version | Script Version | Download | Unix Bash Code |
-| --- | --- | -------------------- | -------------------- |
-| 1.0.x-1.5.x | 1.0.0 | **[Live Version - 1.0](https://github.com/VanillaChan6571/WemxProAuto/blob/main/WemxPRO-SSO-Installer-live.sh)** | bash <(curl -s https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/WemxPRO-SSO-Installer-live.sh) |
-| 1.0.x-1.5.x | 1.0 | **[1.0](https://github.com/VanillaChan6571/WemxProAuto/blob/main/History-3rdParties/WemxPRO-SSO-Installer-1.0.sh)** | bash <(curl -s https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/History-3rdParties/WemxPRO-SSO-Installer-1.0.sh) |

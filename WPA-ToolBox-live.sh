@@ -1,5 +1,5 @@
 #!/bin/bash
-#WPA:2.1.1
+#WPA:2.1.1A
 full_script_name="$0"
 script_name=$(basename "$full_script_name")
 clear
@@ -77,8 +77,8 @@ function show_menu() {
                 ;;
             "UpdateWemx")
                 echo "Updating Wemx Confirmed! | Preparing..."
-				sleep 5s
-                update_wemx
+		sleep 5s
+                wemx_update
                 ;;
             "RenewCert")
                 echo "Proceeding with renewing certificates..."

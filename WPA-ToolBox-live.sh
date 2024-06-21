@@ -63,7 +63,7 @@ clear
 function show_menu() {
     clear
     echo "============================================================================"
-    echo "WemxPRO | WPA ToolBox Script 2.1.1 EXPERIMENTAL - Main Menu"
+    echo "WemxPRO | WPA ToolBox Script 2.1.1A EXPERIMENTAL - Main Menu"
     echo "============================================================================"
     echo
 
@@ -1923,7 +1923,7 @@ echo "This was the entire installer!"
 echo "Thank You for using the WemxPROAuto Installer!"
 echo "Made by nwya#0 or VanillaChan#6571"
 echo "============================================================================"
-success "Exited WPA-ToolBox-2.1.1"
+success "Exited WPA-ToolBox-2.1.1A"
 exit 0
 }
 #---#
@@ -2000,11 +2000,14 @@ EOF
 }
 skip_fresh_boot(){
 echo "============================================================================"
-echo "WemxPRO | WPA ToolBox Script 2.1.1 EXPERIMENTAL"
+echo "WemxPRO | WPA ToolBox Script 2.1.1A EXPERIMENTAL"
 echo
 echo "Copyright (C) 2021 - $(date +%Y), NekoHosting LLC"
 echo "https://github.com/VanillaChan6571/WemxProAuto"
 echo
+echo "============================================================================"
+echo "Patch Notes for 2.1.1A"
+echo "+ Fixed a Typo when executing Wemx Update Function in Menu Selector"
 echo "============================================================================"
 echo "Patch Notes for 2.1.1"
 echo "+ New Menu!!"
@@ -2033,9 +2036,9 @@ check_booted() {
         booted=$(grep -oP 'booted=\K\d+' "$config_file")
     else
         echo "booted=0" > "$config_file"
-        echo "version=2.1.1" >> "$config_file"
+        echo "version=2.1.1A" >> "$config_file"
         booted=0
-		version=2.1.1
+		version=2.1.1A
     fi
 }
 # Fetch version information

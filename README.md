@@ -71,6 +71,7 @@ This Toolbox does all First Time Installing and Wemx Updating + more at https://
 | Wemx Version | Script Version | Download | Unix Bash Code |
 | --- | --- | -------------------- | -------------------- |
 | 2.1.0 | 2.1.1 | **[Live Version - 2.1.1](https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/WPA-ToolBox-live.sh)** | bash <(curl -s https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/WPA-ToolBox-live.sh) |
+| 2.1.0 | 2.1.1A | **[2.1.1](https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/History-WPA-Toolbox/WPA-ToolBox-2.1.1A.sh)** | bash <(curl -s https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/History-WPA-Toolbox/WPA-ToolBox-2.1.1A.sh) |
 | 2.1.0 | 2.1.1 | **[2.1.1](https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/History-WPA-Toolbox/WPA-ToolBox-2.1.1.sh)** | bash <(curl -s https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/History-WPA-Toolbox/WPA-ToolBox-2.1.1.sh) |
 | 2.0.1 | 2.0.0 | **[2.0.0](https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/History-Installer/WemxPRO-Installer-2.0.sh)** | bash <(curl -s https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/History-Installer/WemxPRO-Installer-2.0.sh) |
 

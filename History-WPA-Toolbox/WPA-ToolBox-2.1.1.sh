@@ -2023,7 +2023,7 @@ show_menu
 # Configuration and path variables
 config_file="WPA.conf"
 VERSION_URL="https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/CheckUpdates/VersionCheck.txt"
-NEW_SCRIPT_URL="https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/WPA-Toolbox-live.sh"
+NEW_SCRIPT_URL="https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/WPA-ToolBox-live.sh"
 CURRENT_SCRIPT="$(basename "$0")"
 TEMP_SCRIPT="new_script.sh"
 

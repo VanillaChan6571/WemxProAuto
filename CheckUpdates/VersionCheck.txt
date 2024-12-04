@@ -1,1 +1,1 @@
-﻿Latest: 2.2.0
+﻿Latest: 2.2.0c

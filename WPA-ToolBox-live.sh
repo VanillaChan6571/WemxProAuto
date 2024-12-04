@@ -536,14 +536,14 @@ function MakeMyDBPublic() {
 
     # Create the mariadb.sources file
     sudo tee /etc/apt/sources.list.d/mariadb.sources > /dev/null <<EOF
-# MariaDB 11.1 repository list [2024]
+# MariaDB 11.2 repository list [Last Updated: 12-04-2024]
 # https://mariadb.org/download/
 X-Repolib-Name: MariaDB
 Types: deb
 # deb.mariadb.org is a dynamic mirror if your preferred mirror goes offline. See https://mariadb.org/mirrorbits/ for details.
-# URIs: https://deb.mariadb.org/11.1/ubuntu
-URIs: https://mirrors.xtom.com/mariadb/repo/11.1/ubuntu
-Suites: $codename
+# URIs: https://deb.mariadb.org/11.2/ubuntu
+URIs: https://mirrors.xtom.com/mariadb/repo/11.2/ubuntu
+Suites: jammy
 Components: main main/debug
 Signed-By: /etc/apt/keyrings/mariadb-keyring.pgp
 EOF

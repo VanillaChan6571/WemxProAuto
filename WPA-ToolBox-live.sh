@@ -1,5 +1,5 @@
 #!/bin/bash
-#WPA:2.2.0
+#WPA:2.2.0C
 full_script_name="$0"
 script_name=$(basename "$full_script_name")
 clear
@@ -63,7 +63,7 @@ clear
 function show_menu() {
     clear
     echo "============================================================================"
-    echo "WemxPRO | WPA ToolBox Script 2.2.0 EXPERIMENTAL - Main Menu"
+    echo "WemxPRO | WPA ToolBox Script 2.2.0c EXPERIMENTAL - Main Menu"
     echo "============================================================================"
     echo
 
@@ -361,7 +361,7 @@ show_menu
 function show_install_menu() {
     clear
 	echo "============================================================================"
-	echo "WemxPRO | WPA ToolBox Script 2.2.0 EXPERIMENTAL - Install Menu"
+	echo "WemxPRO | WPA ToolBox Script 2.2.0c EXPERIMENTAL - Install Menu"
 	echo "============================================================================"
 	echo 
     echo "Select the type of installation:"
@@ -395,7 +395,7 @@ function show_install_menu() {
 function certbot_menu() {
     clear
     echo "============================================================================"
-    echo "WemxPRO | WPA ToolBox Script 2.2.0 EXPERIMENTAL - Certbot Menu"
+    echo "WemxPRO | WPA ToolBox Script 2.2.0c EXPERIMENTAL - Certbot Menu"
     echo "============================================================================"
     echo 
     echo "Select the type of installation:"
@@ -1959,7 +1959,7 @@ echo "This was the entire installer!"
 echo "Thank You for using the WemxPROAuto Installer!"
 echo "Made by nwya#0 or VanillaChan#6571"
 echo "============================================================================"
-success "Exited WPA-ToolBox-2.2.0"
+success "Exited WPA-ToolBox-2.2.0c"
 exit 0
 }
 #---#
@@ -2036,20 +2036,18 @@ EOF
 }
 skip_fresh_boot(){
 echo "============================================================================"
-echo "WemxPRO | WPA ToolBox Script 2.2.0 EXPERIMENTAL"
+echo "WemxPRO | WPA ToolBox Script 2.2.0c EXPERIMENTAL"
 echo
 echo "Copyright (C) 2021 - $(date +%Y), NekoHosting LLC"
 echo "https://github.com/VanillaChan6571/WemxProAuto"
 echo
 echo "============================================================================"
+echo "Patch Notes for 2.2.0c"
+echo "+ Updated Repo for MariaDB since 11.1 is no longer supported. [11.2]"
+echo "============================================================================"
 echo "Patch Notes for 2.2.0"
 echo "+ Added TinyMC API Key Replacer"
 echo "This means you can just paste your key and automatically replace it!"
-echo " "
-echo "============================================================================"
-echo "Patch Notes for 2.1.1A"
-echo "+ Fixed a Typo when executing Wemx Update Function in Menu Selector"
-echo "============================================================================"
 echo " "
 notice "Showing the New Menu in 10 seconds... please wait..."
 sleep 10s
@@ -2070,9 +2068,9 @@ check_booted() {
         booted=$(grep -oP 'booted=\K\d+' "$config_file")
     else
         echo "booted=0" > "$config_file"
-        echo "version=2.2.0" >> "$config_file"
+        echo "version=2.2.0c" >> "$config_file"
         booted=0
-		version=2.2.0
+		version=2.2.0c
     fi
 }
 # Fetch version information

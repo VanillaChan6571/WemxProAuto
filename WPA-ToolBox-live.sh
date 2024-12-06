@@ -1970,7 +1970,7 @@ echo "==========================================================================
 echo "New Boot Detected. Executing Pre-Install/Updates... Please wait..."
 echo "============================================================================"
 sleep 3s
-			echo "installing MariaDB 11.1... please wait..."
+			echo "installing MariaDB 11.2... please wait..."
 			# Detect the Ubuntu version
 			version=$(lsb_release -rs)
 			# Match the version to its codename
@@ -1992,13 +1992,13 @@ sleep 3s
 			sudo curl -o /etc/apt/keyrings/mariadb-keyring.pgp 'https://mariadb.org/mariadb_release_signing_key.pgp'
 			# Create the mariadb.sources file
 			cat << EOF | sudo tee /etc/apt/sources.list.d/mariadb.sources
-# MariaDB 11.1 repository list [2024]
+# MariaDB 11.2 repository list [12-06-2024]
 # https://mariadb.org/download/
 X-Repolib-Name: MariaDB
 Types: deb
 # deb.mariadb.org is a dynamic mirror if your preferred mirror goes offline. See https://mariadb.org/mirrorbits/ for details.
-# URIs: https://deb.mariadb.org/11.1/ubuntu
-URIs: https://mirrors.xtom.com/mariadb/repo/11.1/ubuntu
+# URIs: https://deb.mariadb.org/11.2/ubuntu
+URIs: https://mirrors.xtom.com/mariadb/repo/11.2/ubuntu
 Suites: $codename
 Components: main main/debug
 Signed-By: /etc/apt/keyrings/mariadb-keyring.pgp

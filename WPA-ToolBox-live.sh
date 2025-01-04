@@ -63,7 +63,7 @@ clear
 function show_menu() {
     clear
     echo "============================================================================"
-    echo "WemxPRO | WPA ToolBox Script 2.2.0c EXPERIMENTAL - Main Menu"
+    echo "WemxPRO | WPA ToolBox Script 2.2.1 EXPERIMENTAL - Main Menu"
     echo "============================================================================"
     echo
 
@@ -361,7 +361,7 @@ show_menu
 function show_install_menu() {
     clear
 	echo "============================================================================"
-	echo "WemxPRO | WPA ToolBox Script 2.2.0c EXPERIMENTAL - Install Menu"
+	echo "WemxPRO | WPA ToolBox Script 2.2.1 EXPERIMENTAL - Install Menu"
 	echo "============================================================================"
 	echo 
     echo "Select the type of installation:"
@@ -395,7 +395,7 @@ function show_install_menu() {
 function certbot_menu() {
     clear
     echo "============================================================================"
-    echo "WemxPRO | WPA ToolBox Script 2.2.0c EXPERIMENTAL - Certbot Menu"
+    echo "WemxPRO | WPA ToolBox Script 2.2.1 EXPERIMENTAL - Certbot Menu"
     echo "============================================================================"
     echo 
     echo "Select the type of installation:"
@@ -1959,7 +1959,7 @@ echo "This was the entire installer!"
 echo "Thank You for using the WemxPROAuto Installer!"
 echo "Made by nwya#0 or VanillaChan#6571"
 echo "============================================================================"
-success "Exited WPA-ToolBox-2.2.0c"
+success "Exited WPA-ToolBox-2.2.1"
 exit 0
 }
 #---#
@@ -2036,11 +2036,14 @@ EOF
 }
 skip_fresh_boot(){
 echo "============================================================================"
-echo "WemxPRO | WPA ToolBox Script 2.2.0c EXPERIMENTAL"
+echo "WemxPRO | WPA ToolBox Script 2.2.1 EXPERIMENTAL"
 echo
 echo "Copyright (C) 2021 - $(date +%Y), NekoHosting LLC"
 echo "https://github.com/VanillaChan6571/WemxProAuto"
 echo
+echo "============================================================================"
+echo "Patch Notes for 2.2.1"
+echo "+ Updated Repo for php since php8.1 is no longer supported. [php8.2]"
 echo "============================================================================"
 echo "Patch Notes for 2.2.0c"
 echo "+ Updated Repo for MariaDB since 11.1 is no longer supported. [11.2]"
@@ -2068,9 +2071,9 @@ check_booted() {
         booted=$(grep -oP 'booted=\K\d+' "$config_file")
     else
         echo "booted=0" > "$config_file"
-        echo "version=2.2.0c" >> "$config_file"
+        echo "version=2.2.1" >> "$config_file"
         booted=0
-		version=2.2.0c
+		version=2.2.1
     fi
 }
 # Fetch version information

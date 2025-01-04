@@ -1,5 +1,5 @@
 #!/bin/bash
-#WPA:2.2.0C
+#WPA:2.2.1
 full_script_name="$0"
 script_name=$(basename "$full_script_name")
 clear
@@ -567,9 +567,9 @@ EOF
     notice "Updating Packages..."
     sudo apt update && sudo apt upgrade -y
     warning "You should manually run 'sudo apt-add-repository universe' since 18.04 is not supported for this script."
-    sudo apt -y install php8.1 php8.1-{common,cli,gd,mysql,mbstring,bcmath,xml,fpm,curl,zip} mariadb-server nginx tar unzip git redis-server mariadb-client net-tools
+    sudo apt -y install php8.2 php8.2-{common,cli,gd,mysql,mbstring,bcmath,xml,fpm,curl,zip} mariadb-server nginx tar unzip git redis-server mariadb-client net-tools
 	#sudo apt -y install php8.3 php8.3-{common,cli,gd,mysql,mbstring,bcmath,xml,fpm,curl,zip} mariadb-server nginx tar unzip git redis-server mariadb-client net-tools
-    #WemX Dev Currently is switching to PHP 8.3 + Laravel 11 | This will be updated to mixin 8.1 + 8.3
+    #WemX Dev Currently is switching to PHP 8.3 + Laravel 11 | 8.3 still not tested or supported.
 	sleep 10s
 
     CONFIG_FILE="/etc/mysql/mariadb.conf.d/50-server.cnf"
@@ -1128,7 +1128,7 @@ server {
 
     location ~ \.php$ {
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
-        fastcgi_pass unix:/run/php/php8.1-fpm.sock;
+        fastcgi_pass unix:/run/php/php8.2-fpm.sock;
         fastcgi_index index.php;
         include fastcgi_params;
         fastcgi_param PHP_VALUE "upload_max_filesize = 100M \n post_max_size=100M";
@@ -1905,7 +1905,7 @@ server {
 
     location ~ \.php$ {
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
-        fastcgi_pass unix:/run/php/php8.1-fpm.sock;
+        fastcgi_pass unix:/run/php/php8.2-fpm.sock;
         fastcgi_index index.php;
         include fastcgi_params;
         fastcgi_param PHP_VALUE "upload_max_filesize = 100M \n post_max_size=100M";
@@ -2024,7 +2024,7 @@ EOF
 			sleep 3s
 			sudo apt update && sudo apt upgrade -y
 			warning "You should manually run 'sudo apt-add-repository universe' since 18.04 is not supported for this script."
-			sudo apt -y install php8.1 php8.1-{common,cli,gd,mysql,mbstring,bcmath,xml,fpm,curl,zip} mariadb-server nginx tar unzip git redis-server mariadb-client net-tools
+			sudo apt -y install php8.2 php8.2-{common,cli,gd,mysql,mbstring,bcmath,xml,fpm,curl,zip} mariadb-server nginx tar unzip git redis-server mariadb-client net-tools
 			sleep 2s
 			echo "============================================================================"
 			echo "Pre-install/Update Completed..."

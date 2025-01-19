@@ -1,5 +1,5 @@
 #!/bin/bash
-# Ubuntu.sh - Ubuntu-specific boot installation
+# Debian.sh - Debian-specific boot installation
 
 # Set up error handling
 set -e
@@ -16,26 +16,18 @@ trap 'handle_error $LINENO' ERR
 install_base_packages() {
     notice "Installing base packages..."
     apt update
-    apt -y install software-properties-common curl apt-transport-https ca-certificates gnupg certbot
+    apt -y install software-properties-common curl apt-transport-https ca-certificates gnupg wget
 }
 
 add_repositories() {
     notice "Adding required repositories..."
     
-    # PHP Repository
-    LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php
+    # PHP Repository for Debian
+    curl -sSL https://packages.sury.org/php/apt.gpg | gpg --dearmor -o /usr/share/keyrings/php.gpg
+    echo "deb [signed-by=/usr/share/keyrings/php.gpg] https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list
     
-    # MariaDB Repository (skip for 22.04)
-    if [ "$(lsb_release -rs)" != "22.04" ]; then
-        notice "Adding MariaDB repository..."
-        curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | bash
-    fi
-    
-    # Universe repository for 18.04
-    if [ "$(lsb_release -rs)" = "18.04" ]; then
-        notice "Adding universe repository for 18.04..."
-        apt-add-repository universe
-    fi
+    # MariaDB Repository
+    curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | bash
 }
 
 install_dependencies() {
@@ -57,8 +49,7 @@ install_dependencies() {
         nginx \
         tar \
         unzip \
-        git \
-		redis-server
+        git
 }
 
 install_composer() {
@@ -73,11 +64,11 @@ install_composer() {
 }
 
 # Main installation function
-ubuntu_install() {
-    notice "Starting Ubuntu installation..."
+debian_install() {
+    notice "Starting Debian installation..."
     
     # Store current progress in temporary file
-    progress_file="/tmp/ubuntu_install_progress"
+    progress_file="/tmp/debian_install_progress"
     echo "0" > "$progress_file"
     
     # Step 1: Base packages
@@ -107,9 +98,9 @@ ubuntu_install() {
     # Clean up
     rm -f "$progress_file"
     
-    success "Ubuntu installation completed successfully"
+    success "Debian installation completed successfully"
     return 0
 }
 
 # Execute installation
-ubuntu_install
+debian_install

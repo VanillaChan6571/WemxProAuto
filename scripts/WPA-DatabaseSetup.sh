@@ -251,6 +251,7 @@ main() {
     echo "============================================================================"
     echo
     echo "Access Type: $access_host"
+	notice "The Admin User that You Created will be Remote Access"
     echo "Installation Type: $install_type"
     echo "Admin Username: $admin_user"
     echo
@@ -270,17 +271,6 @@ main() {
     create_database_users "$access_host" "$install_type" "$admin_user" "$admin_pass"
     
     success "Database setup completed successfully!"
-    notice "Would you like to proceed with software installation?"
-    read -p "Continue to installation? (y/n): " continue
-
-    if [[ $continue =~ ^[Yy]$ ]]; then
-        if [ -f "/root/WPA-Toolbox/scripts/WPA-WemxInstall.sh" ]; then
-            exec /root/WPA-Toolbox/scripts/WPA-WemxInstall.sh
-        else
-            error "Installation script not found!"
-            exit 1
-        fi
-    fi
 }
 
 # Run main function

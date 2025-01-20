@@ -3,7 +3,7 @@
     src="https://cdn.discordapp.com/icons/760945720470667294/1f6cf16d3e468242cacc1b539e6b4561.webp?size=256">
 </p>
 
-<h1 align="center">! Legacy Branch !</h1>
+<h1 align="center">! Legacy Branch - USE v3 BRANCH FOR NEWER SYSTEM !</h1>
 
 <p align="center">
  <b>

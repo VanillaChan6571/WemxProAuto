@@ -134,14 +134,6 @@ setup_database() {
     php artisan migrate --seed --force
 }
 
-# Configure mail settings
-configure_mail() {
-    cd "$INSTALL_DIR"
-    
-    notice "Setting up mail configuration..."
-    php artisan p:environment:mail
-}
-
 # Create admin user
 create_admin() {
     cd "$INSTALL_DIR"
@@ -211,9 +203,6 @@ main() {
     
     set_permissions
     echo "6" > "$progress_file"
-    
-	configure_mail
-    echo "7" > "$progress_file"
 	
     # Cleanup
     rm -f "$progress_file"

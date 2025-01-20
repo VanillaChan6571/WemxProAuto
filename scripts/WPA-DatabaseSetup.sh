@@ -26,41 +26,6 @@ setup_directories() {
     fi
 }
 
-# Function to handle existing secrets file
-handle_existing_secrets() {
-    if [ -f "/root/WPA-ToolBox/database/CatSecrets.txt" ]; then
-        notice "A previous database configuration file was found."
-        while true; do
-            read -p "Have you already created database accounts? (y/n): " yn
-            case $yn in
-                [Yy]* )
-                    read -p "Would you like to skip to WemX installation? (y/n): " skip
-                    if [[ $skip =~ ^[Yy]$ ]]; then
-                        notice "Skipping to WemX installation..."
-                        if [ -f "/root/WPA-Toolbox/scripts/WPA-WemxInstall.sh" ]; then
-                            exec /root/WPA-Toolbox/scripts/WPA-WemxInstall.sh
-                        else
-                            error "WemX installation script not found!"
-                            exit 1
-                        fi
-                    fi
-                    return 1
-                    ;;
-                [Nn]* )
-                    timestamp=$(date +%Y%m%d_%H%M%S)
-                    mv /root/WPA-ToolBox/database/CatSecrets.txt "/root/WPA-ToolBox/database/old.CatSecrets${timestamp}.txt"
-                    success "Created backup of existing configuration"
-                    return 0
-                    ;;
-                * )
-                    echo "Please answer yes or no."
-                    ;;
-            esac
-        done
-    fi
-    return 0
-}
-
 # Function to create database users
 create_database_users() {
     local access_host="$1"
@@ -124,10 +89,6 @@ main() {
     echo "============================================================================"
 
     setup_directories
-    
-    if ! handle_existing_secrets; then
-        exit 0
-    fi
 
     # First get access type
     access_host=""

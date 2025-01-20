@@ -183,7 +183,7 @@ configure_environment() {
     # Ask for domain first
     notice "Please enter your WemX authorized domain"
     notice "This will be used as your Application URL"
-    read -p "Domain (e.g., panel.yourdomain.com): " APP_DOMAIN
+    read -p "Authorized WemX Domain (e.g., nekohosting.gg): " APP_DOMAIN
     
     if [ -z "$APP_DOMAIN" ]; then
         error "Domain cannot be empty"

@@ -17,9 +17,8 @@ error() { echo -e "* ${COLOR_RED}ERROR${COLOR_NC}: $1" 1>&2; }
 warning() { echo -e "* ${COLOR_YELLOW}WARNING${COLOR_NC}: $1" 1>&2; }
 notice() { echo -e "* ${COLOR_BLUE}NOTICE${COLOR_NC}: $1" 1>&2; }
 
-# Configuration
+# Remove old CERT_INFO_FILE configuration since we're using domain-specific files
 SSL_INFO_DIR="/root/WPA-ToolBox/ssl"
-CERT_INFO_FILE="${SSL_INFO_DIR}/certbot.txt"
 
 # Function to handle errors
 handle_error() {
@@ -103,16 +102,48 @@ save_cert_info() {
     local domain=$1
     local cert_path="/etc/letsencrypt/live/$domain"
     
+    # Convert domain to safe filename (replace dots with hyphens)
+    local safe_domain=$(echo "$domain" | tr '.' '-')
+    local cert_info_file="${SSL_INFO_DIR}/ssl-${safe_domain}.txt"
+    
+    # Check if file exists and create backup if it does
+    if [ -f "$cert_info_file" ]; then
+        notice "Previous SSL information found for $domain"
+        local backup_date=$(date "+%Y%m%d_%H%M%S")
+        local backup_file="${cert_info_file}.backup_${backup_date}"
+        cp "$cert_info_file" "$backup_file"
+        notice "Backup created: ${backup_file}"
+    else
+        notice "Creating new SSL information file for $domain"
+    fi
+    
     # Create or update certificate info file
-    cat > "$CERT_INFO_FILE" << EOF
+    cat > "$cert_info_file" << EOF
+SSL Certificate Information for $domain
+Last Updated: $(date)
+============================================================================
 Domain: $domain
 Certificate Path: $cert_path
-Fullchain: $cert_path/fullchain.pem
-Private Key: $cert_path/privkey.pem
-Created: $(date)
+Fullchain Path: $cert_path/fullchain.pem
+Private Key Path: $cert_path/privkey.pem
+Certificate Created/Updated: $(date)
+
+Auto Renewal: Enabled
+Renewal Schedule: Daily at 23:00 (11 PM)
+Renewal Hook: systemctl restart nginx
+
+Note: Certificates are stored in $cert_path
+      Make sure to back up the entire /etc/letsencrypt directory
+============================================================================
 EOF
     
-    success "Certificate information saved to $CERT_INFO_FILE"
+    success "Certificate information saved to $cert_info_file"
+    
+    # Display the contents of the file
+    notice "Current SSL certificate information:"
+    echo "============================================================================"
+    cat "$cert_info_file"
+    echo "============================================================================"
 }
 
 # Function to set up auto-renewal

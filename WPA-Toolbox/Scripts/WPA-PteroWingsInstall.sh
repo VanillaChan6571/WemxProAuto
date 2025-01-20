@@ -1,40 +1,261 @@
-# todo, Wings Install
+#!/bin/bash
+# WPA-PteroWingsInstall.sh - Automated Wings Installation Script
 
-To run Wings, you will need a Linux system capable of running Docker containers. Most VPS and almost all dedicated servers should be capable of running Docker, but there are edge cases.
+# Set up error handling
+set -e
 
-When your provider uses Virtuozzo, OpenVZ (or OVZ), or LXC virtualization, you will most likely be unable to run Wings. Some providers have made the necessary changes for nested virtualization to support Docker. Ask your provider's support team to make sure. KVM is guaranteed to work.
+# Color definitions
+COLOR_BLUE='\033[0;34m'
+COLOR_YELLOW='\033[1;33m'
+COLOR_GREEN='\033[0;32m'
+COLOR_RED='\033[0;31m'
+COLOR_NC='\033[0m'
 
-The easiest way to check is to type systemd-detect-virt. If the result doesn't contain OpenVZ orLXC, it should be fine. The result of none will appear when running dedicated hardware without any virtualization.
+# Logging functions
+success() { echo -e "* ${COLOR_GREEN}SUCCESS${COLOR_NC}: $1" 1>&2; }
+error() { echo -e "* ${COLOR_RED}ERROR${COLOR_NC}: $1" 1>&2; }
+warning() { echo -e "* ${COLOR_YELLOW}WARNING${COLOR_NC}: $1" 1>&2; }
+notice() { echo -e "* ${COLOR_BLUE}NOTICE${COLOR_NC}: $1" 1>&2; }
 
-Should that not work for some reason, or you're still unsure, you can also run the command below.
+# Function to handle errors
+handle_error() {
+    error "An error occurred during installation at line $1"
+    if [ -f "$progress_file" ]; then
+        error "Installation failed at step $(cat $progress_file)"
+    fi
+    exit 1
+}
 
-sudo dmidecode -s system-manufacturer
+# Set up error trap
+trap 'handle_error $LINENO' ERR
 
-# Installing Docker
-curl -sSL https://get.docker.com/ | CHANNEL=stable bash
+# Progress tracking
+progress_file="/tmp/wings_install_progress"
 
-sudo systemctl enable --now docker
+# Check system compatibility
+check_compatibility() {
+    notice "Checking system compatibility..."
+    
+    # Check virtualization
+    VIRTUALIZATION=$(systemd-detect-virt)
+    MANUFACTURER=$(dmidecode -s system-manufacturer 2>/dev/null || echo "unknown")
+    
+    case $VIRTUALIZATION in
+        "openvz"|"lxc")
+            error "OpenVZ or LXC virtualization detected. Wings cannot run in this environment."
+            exit 1
+            ;;
+        "none")
+            success "Running on dedicated hardware"
+            ;;
+        *)
+            if [[ $MANUFACTURER == *"Virtuozzo"* ]]; then
+                error "Virtuozzo virtualization detected. Wings cannot run in this environment."
+                exit 1
+            else
+                warning "Running in a virtualized environment ($VIRTUALIZATION)"
+                warning "Some features may not work as expected"
+            fi
+            ;;
+    esac
+}
 
-Enabling Swap
+# Install Docker
+install_docker() {
+    notice "Installing Docker..."
+    
+    # Install required packages
+    apt-get update
+    apt-get install -y ca-certificates curl gnupg lsb-release
+    
+    # Add Docker's official GPG key
+    mkdir -p /etc/apt/keyrings
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+    
+    # Set up Docker repository
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
+    
+    # Install Docker Engine
+    apt-get update
+    apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+    
+    # Start and enable Docker
+    systemctl start docker
+    systemctl enable docker
+    
+    # Verify Docker installation
+    if ! docker info &>/dev/null; then
+        error "Docker installation failed"
+        exit 1
+    fi
+    
+    success "Docker installed successfully"
+}
 
-On most systems, Docker will be unable to setup swap space by default. You can confirm this by running docker info and looking for the output of WARNING: No swap limit support near the bottom.
+# Configure SWAP limits
+configure_swap() {
+    notice "Configuring swap limits..."
+    
+    if docker info 2>&1 | grep -q "WARNING: No swap limit support"; then
+        notice "Enabling swap limit support..."
+        
+        # Backup GRUB configuration
+        cp /etc/default/grub /etc/default/grub.backup
+        
+        # Add or update swapaccount parameter
+        if grep -q "^GRUB_CMDLINE_LINUX_DEFAULT=" /etc/default/grub; then
+            sed -i 's/^GRUB_CMDLINE_LINUX_DEFAULT="[^"]*"/GRUB_CMDLINE_LINUX_DEFAULT="swapaccount=1"/' /etc/default/grub
+        else
+            echo 'GRUB_CMDLINE_LINUX_DEFAULT="swapaccount=1"' >> /etc/default/grub
+        fi
+        
+        # Update GRUB
+        update-grub
+        
+        notice "Swap limits configured. A reboot will be required."
+    else
+        notice "Swap limit support already enabled"
+    fi
+}
 
-Enabling swap is entirely optional, but we recommended doing it if you will be hosting for others and to prevent OOM errors.
+# Install Wings
+install_wings() {
+    notice "Installing Pterodactyl Wings..."
+    
+    mkdir -p /etc/pterodactyl
+    cd /etc/pterodactyl
+    
+    # Determine system architecture
+    ARCH=$([[ "$(uname -m)" == "x86_64" ]] && echo "amd64" || echo "arm64")
+    
+    # Download Wings
+    curl -L -o /usr/local/bin/wings "https://github.com/pterodactyl/wings/releases/latest/download/wings_linux_$ARCH"
+    chmod u+x /usr/local/bin/wings
+    
+    # Create Wings configuration file
+    if [ ! -f "/etc/pterodactyl/config.yml" ]; then
+        touch /etc/pterodactyl/config.yml
+    fi
+}
 
-To enable swap, open /etc/default/grub as a root user and find the line starting with GRUB_CMDLINE_LINUX_DEFAULT. Make sure the line includes swapaccount=1 somewhere inside the double-quotes.
+# Setup data directory
+setup_data_directory() {
+    notice "Setting up Wings data directory..."
+    
+    # Check if running on OVH/SYS
+    if df -h | grep -q '/home'; then
+        warning "OVH/SYS server detected. Consider using /home/daemon-data for server data."
+        
+        options=(
+            "/home/daemon-data/var/lib/pterodactyl"
+            "/var/lib/pterodactyl"
+            "custom"
+        )
+        
+        echo "Select data directory location:"
+        select opt in "${options[@]}"; do
+            case $opt in
+                "/home/daemon-data/var/lib/pterodactyl")
+                    DATA_DIR="/home/daemon-data/var/lib/pterodactyl"
+                    break
+                    ;;
+                "/var/lib/pterodactyl")
+                    DATA_DIR="/var/lib/pterodactyl"
+                    break
+                    ;;
+                "custom")
+                    read -p "Enter custom directory path: " DATA_DIR
+                    break
+                    ;;
+                *) 
+                    echo "Invalid option"
+                    ;;
+            esac
+        done
+    else
+        DATA_DIR="/var/lib/pterodactyl"
+    fi
+    
+    # Create data directory
+    mkdir -p "${DATA_DIR}/volumes"
+    
+    success "Data directory setup complete: ${DATA_DIR}"
+}
 
-After that, run sudo update-grub followed by sudo reboot to restart the server and have swap enabled. Below is an example of what the line should look like, do not copy this line verbatim. It often has additional OS-specific parameters.
+# Create systemd service
+create_systemd_service() {
+    notice "Creating Wings systemd service..."
+    
+    cat > /etc/systemd/system/wings.service <<EOF
+[Unit]
+Description=Pterodactyl Wings Daemon
+After=docker.service
+Requires=docker.service
+PartOf=docker.service
 
-GRUB_CMDLINE_LINUX_DEFAULT="swapaccount=1"
+[Service]
+User=root
+WorkingDirectory=/etc/pterodactyl
+LimitNOFILE=4096
+PIDFile=/var/run/wings/daemon.pid
+ExecStart=/usr/local/bin/wings
+Restart=on-failure
+StartLimitInterval=180
+StartLimitBurst=30
+RestartSec=5s
 
-GRUB Configuration
+[Install]
+WantedBy=multi-user.target
+EOF
 
-Some Linux distros may ignore GRUB_CMDLINE_LINUX_DEFAULT. Therefore you might have to use GRUB_CMDLINE_LINUX instead should the default one not work for you.
+    # Reload systemd and enable Wings
+    systemctl daemon-reload
+    systemctl enable wings
+    
+    success "Wings service created and enabled"
+}
 
-sudo mkdir -p /etc/pterodactyl
-curl -L -o /usr/local/bin/wings "https://github.com/pterodactyl/wings/releases/latest/download/wings_linux_$([[ "$(uname -m)" == "x86_64" ]] && echo "amd64" || echo "arm64")"
-sudo chmod u+x /usr/local/bin/wings
+# Main installation function
+main() {
+    clear
+    echo "============================================================================"
+    echo "WPA-ToolBox Wings Installation"
+    echo "============================================================================"
+    
+    # Initialize progress tracking
+    echo "0" > "$progress_file"
+    
+    check_compatibility
+    echo "1" > "$progress_file"
+    
+    install_docker
+    echo "2" > "$progress_file"
+    
+    configure_swap
+    echo "3" > "$progress_file"
+    
+    install_wings
+    echo "4" > "$progress_file"
+    
+    setup_data_directory
+    echo "5" > "$progress_file"
+    
+    create_systemd_service
+    echo "6" > "$progress_file"
+    
+    # Cleanup
+    rm -f "$progress_file"
+    
+    success "Wings installation completed successfully!"
+    notice "Please configure your node in the Pterodactyl Panel and copy the configuration to /etc/pterodactyl/config.yml"
+    notice "Then start Wings using: systemctl start wings"
+    
+    # Offer to start Wings
+    echo "Starting Wings..."
+    systemctl start wings
+    notice "Wings service started"
+    fi
+}
 
-OVH/SYS Servers
-
-If you are using a server provided by OVH or SoYouStart please be aware that your main drive space is probably allocated to /home, and not / by default. Please consider using /home/daemon-data for server data. This can be easily set when creating the node.
+# Execute main installation
+main "$@"

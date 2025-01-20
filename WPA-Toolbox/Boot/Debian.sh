@@ -16,7 +16,7 @@ trap 'handle_error $LINENO' ERR
 install_base_packages() {
     notice "Installing base packages..."
     apt update
-    apt -y install software-properties-common curl apt-transport-https ca-certificates gnupg wget
+    apt -y install software-properties-common curl apt-transport-https ca-certificates gnupg wget certbot
 }
 
 add_repositories() {
@@ -49,7 +49,8 @@ install_dependencies() {
         nginx \
         tar \
         unzip \
-        git
+        git \
+		redis-server
 }
 
 install_composer() {

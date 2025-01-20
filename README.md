@@ -3,7 +3,7 @@
     src="https://cdn.discordapp.com/icons/760945720470667294/1f6cf16d3e468242cacc1b539e6b4561.webp?size=256">
 </p>
 
-<h1 align="center">WemxProAuto - Your Favorite Toolbox! </h1>
+<h1 align="center">WemxProAuto v3 - Your Favorite Toolbox! </h1>
 
 <p align="center">
  <b>

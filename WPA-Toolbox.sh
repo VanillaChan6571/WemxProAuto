@@ -22,17 +22,29 @@ if [[ $EUID -ne 0 ]] && [[ "$1" != "-ignore-root-only-cause-i-am-dumb" ]]; then
 fi
 
 # Version and version check URL
-CURRENT_VERSION_URL="https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/refs/heads/main/CheckUpdates/VersionCheck.txt"
+CURRENT_VERSION_URL="https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/refs/heads/v3/VersionCheck.txt"
 LOCAL_VERSION=""
 REMOTE_VERSION=""
+
+# Required script files
+REQUIRED_SCRIPTS=(
+    "WPA-CreateSSL.sh"
+    "WPA-DatabaseSetup.sh"
+    "WPA-Menu.sh"
+    "WPA-Nginx.sh"
+    "WPA-PteroInstall.sh"
+    "WPA-PteroWingsInstall.sh"
+    "WPA-WemxInstall.sh"
+)
 
 # Base directories
 SCRIPTS_DIR="/root/WPA-ToolBox/scripts"
 BOOT_DIR="/root/WPA-ToolBox/boot"
 CONFIG_FILE="/root/WPA.conf"
 
-# GitHub base URL
-GITHUB_BASE="https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/refs/heads/main/WPA-Toolbox"
+# GitHub base URL for downloading scripts
+GITHUB_BASE="https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/refs/heads/v3/scripts"
+GITHUB_BOOT="https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/refs/heads/v3/boot"
 
 # Required script files
 REQUIRED_SCRIPTS=(
@@ -84,7 +96,7 @@ check_script_files() {
     for script in "${REQUIRED_SCRIPTS[@]}"; do
         if [ ! -f "$SCRIPTS_DIR/$script" ]; then
             warning "Missing script: $script"
-            download_file "$script" "$SCRIPTS_DIR" "$GITHUB_BASE/Scripts"
+            download_file "$script" "$SCRIPTS_DIR" "$GITHUB_BASE"
             if [ $? -ne 0 ]; then
                 missing_files=1
             fi
@@ -99,7 +111,7 @@ check_boot_file() {
     notice "Checking boot installation file..."
     if [ ! -f "$BOOT_DIR/WPA-Boot-Install.sh" ]; then
         warning "Missing boot installation script"
-        download_file "WPA-Boot-Install.sh" "$BOOT_DIR" "$GITHUB_BASE/Boot"
+        download_file "WPA-Boot-Install.sh" "$BOOT_DIR" "$GITHUB_BOOT"
         return $?
     fi
     return 0

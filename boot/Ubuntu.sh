@@ -13,6 +13,37 @@ handle_error() {
 # Set up error trap
 trap 'handle_error $LINENO' ERR
 
+# Reusable download function with retries
+download_with_retry() {
+    local url=$1
+    local output=$2
+    local max_attempts=3
+    local attempt=1
+    local sleep_time=5
+    
+    while [ $attempt -le $max_attempts ]; do
+        notice "Download attempt $attempt of $max_attempts..."
+        
+        if curl -sSf "$url" -o "$output"; then
+            success "Download successful"
+            return 0
+        fi
+        
+        warning "Attempt $attempt failed."
+        
+        if [ $attempt -lt $max_attempts ]; then
+            warning "Waiting $sleep_time seconds before next attempt..."
+            sleep $sleep_time
+            sleep_time=$((sleep_time * 2))
+        fi
+        
+        attempt=$((attempt + 1))
+    done
+    
+    error "Download failed after $max_attempts attempts"
+    return 1
+}
+
 install_base_packages() {
     notice "Installing base packages..."
     apt update
@@ -22,13 +53,21 @@ install_base_packages() {
 add_repositories() {
     notice "Adding required repositories..."
     
-    # PHP Repository
+    # PHP Repository with retry
     LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php
     
-    # MariaDB Repository (skip for 22.04)
+    # MariaDB Repository (skip for 22.04) with retry
     if [ "$(lsb_release -rs)" != "22.04" ]; then
         notice "Adding MariaDB repository..."
-        curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | bash
+        local temp_file=$(mktemp)
+        if download_with_retry "https://downloads.mariadb.com/MariaDB/mariadb_repo_setup" "$temp_file"; then
+            bash "$temp_file"
+            rm -f "$temp_file"
+        else
+            error "Failed to download MariaDB repository setup script"
+            rm -f "$temp_file"
+            return 1
+        fi
     fi
     
     # Universe repository for 18.04
@@ -58,18 +97,45 @@ install_dependencies() {
         tar \
         unzip \
         git \
-		redis-server
+        redis-server
 }
 
 install_composer() {
     notice "Installing Composer..."
-    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+    local temp_file=$(mktemp)
+    local max_attempts=3
+    local attempt=1
+    local sleep_time=5
     
-    # Verify composer installation
-    if ! command -v composer &> /dev/null; then
-        error "Composer installation failed"
-        return 1
-    fi
+    while [ $attempt -le $max_attempts ]; do
+        notice "Composer installation attempt $attempt of $max_attempts..."
+        
+        if download_with_retry "https://getcomposer.org/installer" "$temp_file"; then
+            if php "$temp_file" -- --install-dir=/usr/local/bin --filename=composer; then
+                rm -f "$temp_file"
+                
+                # Verify installation
+                if command -v composer &> /dev/null; then
+                    success "Composer installed successfully"
+                    return 0
+                fi
+            fi
+        fi
+        
+        warning "Attempt $attempt failed."
+        
+        if [ $attempt -lt $max_attempts ]; then
+            warning "Waiting $sleep_time seconds before next attempt..."
+            sleep $sleep_time
+            sleep_time=$((sleep_time * 2))
+        fi
+        
+        attempt=$((attempt + 1))
+    done
+    
+    rm -f "$temp_file"
+    error "Composer installation failed after $max_attempts attempts"
+    return 1
 }
 
 # Main installation function

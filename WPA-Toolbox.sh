@@ -210,7 +210,7 @@ check_boot_status() {
     if [ ! -f "$CONFIG_FILE" ]; then
         warning "WPA.conf not found. Creating new configuration..."
         cat > "$CONFIG_FILE" << EOF
-WPA=2.2.1
+WPA=3.0.0
 Booted=0
 OS=$(lsb_release -is | tr '[:upper:]' '[:lower:]')-$(lsb_release -rs)
 EOF

@@ -70,36 +70,6 @@ Auto Update will update the following:
 This Toolbox does all First Time Installing and Wemx Updating + more at https://github.com/VanillaChan6571/WemxProAuto/wiki/2.0.0-Update-Experimental
 | Wemx Version | Script Version | Download | Unix Bash Code |
 | --- | --- | -------------------- | -------------------- |
-| 2.1.0 | 2.2.0c | **[Live Version - 2.2.0c](https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/WPA-ToolBox-live.sh)** | bash <(curl -s https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/WPA-ToolBox-live.sh) |
-| 2.1.0 | 2.2.0 | **[2.2.0](https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/History-WPA-Toolbox/WPA-ToolBox-2.1.1A.sh)** | bash <(curl -s https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/History-WPA-Toolbox/WPA-ToolBox-2.2.0.sh) |
-| 2.1.0 | 2.1.1A | **[2.1.1A](https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/History-WPA-Toolbox/WPA-ToolBox-2.1.1A.sh)** | bash <(curl -s https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/History-WPA-Toolbox/WPA-ToolBox-2.1.1A.sh) |
-| 2.1.0 | 2.1.1 | **[2.1.1](https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/History-WPA-Toolbox/WPA-ToolBox-2.1.1.sh)** | bash <(curl -s https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/History-WPA-Toolbox/WPA-ToolBox-2.1.1.sh) |
-| 2.0.1 | 2.0.0 | **[2.0.0](https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/History-Installer/WemxPRO-Installer-2.0.sh)** | bash <(curl -s https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/History-Installer/WemxPRO-Installer-2.0.sh) |
+| 2.1.0 | 3.0.0-dev | **[Live Version - 3.0.0-dev](https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/refs/heads/v3/WPA-Toolbox.sh)** | bash <(curl -s https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/refs/heads/v3/WPA-Toolbox.sh) |
 
-## Extra
-Thirdparties / Extra Installers.
-| Wemx Version | Script Version | Download | Unix Bash Code |
-| --- | --- | -------------------- | -------------------- |
-| 1.0.x-1.5.x | 1.0.0 | **[Live Version - 1.0](https://github.com/VanillaChan6571/WemxProAuto/blob/main/WemxPRO-SSO-Installer-live.sh)** | bash <(curl -s https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/WemxPRO-SSO-Installer-live.sh) |
-| 1.0.x-1.5.x | 1.0 | **[1.0](https://github.com/VanillaChan6571/WemxProAuto/blob/main/History-3rdParties/WemxPRO-SSO-Installer-1.0.sh)** | bash <(curl -s https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/History-3rdParties/WemxPRO-SSO-Installer-1.0.sh) |
-
-
-## Old Legacy Installers
-Some Old First Time Installer History
-All Download Verions for Installer (Legacy)
-| Wemx Version | Script Version | Download | Unix Bash Code |
-| --- | --- | -------------------- | -------------------- |
-| 1.7.0 | 1.0.2 | **[1.0.2](https://github.com/VanillaChan6571/WemxProAuto/blob/main/History-Installer/WemxPRO-Installer-1.0.2.sh)** | bash <(curl -s https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/History-Installer/WemxPRO-Installer-1.0.2.sh) |
-| 1.5.0-1.6.4 | 1.0.1 | **[1.0.1](https://github.com/VanillaChan6571/WemxProAuto/blob/main/History-Installer/WemxPRO-Installer-1.0.1.sh)** | bash <(curl -s https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/History-Installer/WemxPRO-Installer-1.0.1.sh) |
-| 1.4.0 | 1.0 | **[1.0.0](https://github.com/VanillaChan6571/WemxProAuto/blob/main/History-Installer/WemxPRO-Installer-1.0.sh)** | bash <(curl -s https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/History-Installer/WemxPRO-Installer-1.0.sh) |
-
-Old Updater History
-All Download Verions for Updater - Legacy
-| Wemx Version | Script Version | Download | Unix Bash Code |
-| --- | --- | -------------------- | -------------------- |
-| 1.9.x | 1.0.3 | **[Live Version - 1.0.3](https://github.com/VanillaChan6571/WemxProAuto/blob/main/WemxPRO-Updater-live.sh)** | bash <(curl -s https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/WemxPRO-Updater-live.sh) |
-| 1.9.x | 1.0.3 | **[1.0.3](https://github.com/VanillaChan6571/WemxProAuto/blob/main/History-Updater/WemxPRO-Updater-1.0.3.sh)** | bash <(curl -s https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/History-Updater/WemxPRO-Updater-1.0.3.sh) |
-| 1.7.0-1.8.x | 1.0.2 | **[1.0.2](https://github.com/VanillaChan6571/WemxProAuto/blob/main/History-Updater/WemxPRO-Updater-1.0.2.sh)** | bash <(curl -s https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/History-Updater/WemxPRO-Updater-1.0.2.sh) |
-| 1.5.0-1.6.4 | 1.0.1 | **[1.0.1](https://github.com/VanillaChan6571/WemxProAuto/blob/main/History-Updater/WemxPRO-Updater-1.0.1.sh)** | bash <(curl -s https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/History-Updater/WemxPRO-Updater-1.0.1.sh) |
-| 1.4.0 | 1.0 | **[1.0](https://github.com/VanillaChan6571/WemxProAuto/blob/main/History-Updater/WemxPRO-Updater-1.0.sh)** | bash <(curl -s https://raw.githubusercontent.com/VanillaChan6571/WemxProAuto/main/History-Updater/WemxPRO-Updater-1.0.sh) |
 

@@ -89,7 +89,12 @@ main() {
     echo "============================================================================"
 
     setup_directories
-
+    
+    # Add this line to call handle_existing_secrets
+    if ! handle_existing_secrets; then
+        exit 0
+    fi
+    
     # First get access type
     access_host=""
     while true; do
